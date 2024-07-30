@@ -1,0 +1,226 @@
+/* General Styles */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('/bg.jpg'); /* Replace with your background image */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the background image */
+    background-attachment: fixed; /* Keep the background image fixed during scrolling */
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.logo img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.site-title {
+    margin-left: 20px; /* Space between the logo and the title */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.site-title h1 {
+    margin: 0;
+    font-size: 3rem;
+    font-family: 'Rowdies', sans-serif;
+}
+
+.site-title p {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #777;
+}
+
+nav {
+    margin-left: auto; /* Push the navigation to the right */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+    padding: 0;
+    margin: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.25rem;
+}
+
+nav a:hover {
+    color: #007bff;
+}
+
+main {
+    padding: 20px;
+}
+
+.about-intro {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.about-intro h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-family: 'Rowdies', sans-serif;
+}
+
+.about-intro p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.team {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.team h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-family: 'Rowdies', sans-serif;
+}
+
+.team-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Ensure items wrap on smaller screens */
+}
+
+.team-member {
+    flex: 1 1 calc(33.333% - 40px); /* Three items per row with space */
+    max-width: calc(33.333% - 40px); /* Prevent items from overflowing */
+    text-align: center;
+    margin: 10px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.team-member img {
+    width: 150px; /* Adjust as needed */
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.team-member h3 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+}
+
+.team-member p {
+    font-size: 1rem;
+}
+
+.contact {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.contact h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-family: 'Rowdies', sans-serif;
+}
+
+.contact p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e7e7e7;
+}
+
+.footer-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-icons .icon img {
+    width: 40px; /* Adjust as needed */
+    height: auto;
+}
+
+main {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background for better readability */
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .team-member {
+        flex: 1 1 100%; /* Stack items on smaller screens */
+        max-width: 100%;
+    }
+}

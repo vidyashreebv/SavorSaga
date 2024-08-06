@@ -22,7 +22,7 @@ header {
 }
 
 .site-title {
-    margin-left: 20px; /* Space between the logo and the title */
+    margin-left: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;

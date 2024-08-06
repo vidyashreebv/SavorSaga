@@ -1,9 +1,15 @@
-
+/* body START */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f8f9fa; /* General background color */
+    background-image: url('/bg.jpg'); /* Replace with your background image */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the background image */
+    background-attachment: fixed; /* Keep the background image fixed during scrolling */
 }
+/* body END */
 
 header {
     display: flex;
@@ -137,41 +143,9 @@ nav a:hover {
     margin-bottom: 20px;
 }
 
-.latest-recipes {
-    padding: 20px;
-    background-color: #fff;
-    text-align: center;
-}
-
-.latest-recipes h2 {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-}
-
-.carousel-inner {
-    padding: 20px;
-}
-
-.carousel-item {
-    display: flex;
-    justify-content: space-between;
-}
-
-.recipe-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-between;
-}
-
 .recipe {
-    position: relative;
-    flex: 1 1 calc(33.333% - 20px);
-    max-width: calc(33.333% - 20px);
-    box-sizing: border-box;
-    text-align: center;
-    margin-bottom: 20px;
+    position: relative; /* This is important for positioning the overlay */
+    overflow: hidden; /* Ensures the overlay doesn't exceed the boundaries of the image */
 }
 
 .recipe img {
@@ -187,11 +161,11 @@ nav a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: #fff; /* Text color */
     font-size: 2.5rem;
     font-family: 'Rowdies', sans-serif;
     opacity: 0;
@@ -199,7 +173,7 @@ nav a:hover {
 }
 
 .recipe:hover .recipe-overlay {
-    opacity: 1;
+    opacity: 1; /* Show overlay on hover */
 }
 
 .section-heading {
@@ -223,6 +197,34 @@ nav a:hover {
     font-size: 2rem;
     margin: 0;
     white-space: nowrap;
+}
+
+.recipe-row {
+    display: flex;
+    flex-wrap: wrap; /* Ensure images wrap as needed */
+    gap: 10px; /* Space between images */
+    justify-content: space-between;
+}
+
+.recipe {
+    flex: 1 1 calc(33.333% - 20px); /* 3 images per row with space between */
+    max-width: calc(33.333% - 20px); /* Ensures images don’t overflow */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    text-align: center;
+    margin-bottom: 20px; /* Space below each row */
+}
+
+.recipe img {
+    width: 100%; /* Fill the container width */
+    height: 500px; /* Fixed height */
+    object-fit: cover; /* Ensure the image covers the container */
+    border-radius: 10px; /* Optional: for rounded corners */
+}
+
+.recipe p {
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    margin-top: 10px;
 }
 
 .subscribe {
@@ -288,8 +290,60 @@ footer {
     height: auto;
 }
 
+@media (max-width: 1024px) {
+    .site-title h1 {
+        font-size: 2.5rem;
+    }
+
+    .site-title p {
+        font-size: 1rem;
+    }
+
+    nav ul {
+        gap: 30px;
+    }
+
+    .hero {
+        height: 300px;
+    }
+
+    .search-container input[type="text"] {
+        width: 250px;
+    }
+
+    .latest-recipes h2 {
+        font-size: 2rem;
+    }
+
+    .recipe img {
+        height: 400px;
+    }
+}
 
 @media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .site-title {
+        margin-left: 0;
+    }
+
+    .site-title h1 {
+        font-size: 2rem;
+    }
+
+    .site-title p {
+        font-size: 0.9rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
     .categories {
         flex-direction: column;
         align-items: center;
@@ -306,11 +360,42 @@ footer {
     .recipe {
         margin: 10px 0;
     }
+
+    .latest-recipes h2 {
+        font-size: 1.8rem;
+    }
+
+    .recipe img {
+        height: 300px;
+    }
 }
 
 @media (max-width: 480px) {
-    .recipe {
-        flex: 1 1 100%;
-        max-width: 100%;
+    .site-title h1 {
+        font-size: 1.5rem;
+    }
+
+    .site-title p {
+        font-size: 0.8rem;
+    }
+
+    nav ul {
+        gap: 10px;
+    }
+
+    .search-container input[type="text"] {
+        width: 200px;
+    }
+
+    .latest-recipes h2 {
+        font-size: 1.5rem;
+    }
+
+    .recipe img {
+        height: 250px;
+    }
+
+    .subscribe-form input[type="email"] {
+        width: 200px;
     }
 }

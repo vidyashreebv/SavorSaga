@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="about.xsl"?>
+<team xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="about.xsd">
+    <member>
+        <name>John Doe</name>
+        <role>Project Manager</role>
+        <image>person1.jpg</image>
+        <description>Experienced in leading software development teams.</description>
+        <email>johndoe@example.com</email>
+    </member>
+    <member>
+        <name>Jane Smith</name>
+        <role>Lead Developer</role>
+        <image>person3.jpg</image>
+        <description>Expert in full-stack development and cloud computing.</description>
+    </member>
+    <member>
+        <name>Emily Johnson</name>
+        <role>Social Media Manager</role>
+        <image>/person2.jpg</image>
+        <description>Emily connects with our audience and shares our culinary adventures through engaging social media content.</description>
+    </member>
+</team>

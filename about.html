@@ -49,27 +49,8 @@
         <br>
         <section class="team">
             <h2>Meet the Team</h2>
-            <div class="team-container">
-                <div class="team-member">
-                    <img src="/person1.jpg" alt="Team Member 1">
-                    <h3>Jane Doe</h3>
-                    <p>Founder & Head Chef</p>
-                    <p>Jane is the heart and soul behind Savor Saga, bringing her years of culinary experience and creativity to every recipe.</p>
-                </div>
-                <div class="team-member">
-                    <img src="/person3.jpg" alt="Team Member 2">
-                    <h3>John Smith</h3>
-                    <p>Food Writer & Critic</p>
-                    <p>John's extensive knowledge of food and his engaging writing style help bring the stories behind our recipes to life.</p>
-                </div>
-                <div class="team-member">
-                    <img src="/person2.jpg" alt="Team Member 3">
-                    <h3>Emily Johnson</h3>
-                    <p>Social Media Manager</p>
-                    <p>Emily connects with our audience and shares our culinary adventures through engaging social media content.</p>
-                </div>
-            </div>
-        </section>
+            <!-- The JavaScript will insert the team-container here -->
+        </section>               
         <br>
         <section class="contact">
             <h2>Get in Touch</h2>
@@ -137,68 +118,104 @@
     <script>
         var map = L.map('map').setView([12.9494, 77.5847], 15);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 20,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 20,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-var startLatLng = [12.935, 77.610]; // Replace with your starting location
-var endLatLng = [12.9494, 77.5847]; // Destination location
+        var startLatLng = [12.935, 77.610]; // Replace with your starting location
+        var endLatLng = [12.9494, 77.5847]; // Destination location
 
-var routingControl = L.Routing.control({
-    waypoints: [
-        L.latLng(startLatLng),
-        L.latLng(endLatLng)
-    ],
-    routeWhileDragging: true
-}).addTo(map);
+        var routingControl = L.Routing.control({
+            waypoints: [
+                L.latLng(startLatLng),
+                L.latLng(endLatLng)
+            ],
+            routeWhileDragging: true
+        }).addTo(map);
 
-function onLocationFound(e) {
-    var radius = e.accuracy;
-    
-    // Remove the existing user marker if it exists
-    if (userMarker) {
-        map.removeLayer(userMarker);
-    }
-    
-    // Add a new marker at the user's current location
-    var userMarker = L.marker(e.latlng).addTo(map)
-        .bindPopup("You are within " + radius + " meters from this point").openPopup();
-    
-    L.circle(e.latlng, radius).addTo(map);
+        function onLocationFound(e) {
+            var radius = e.accuracy;
+            
+            // Remove the existing user marker if it exists
+            if (userMarker) {
+                map.removeLayer(userMarker);
+            }
+            
+            // Add a new marker at the user's current location
+            var userMarker = L.marker(e.latlng).addTo(map)
+                .bindPopup("You are within " + radius + " meters from this point").openPopup();
+            
+            L.circle(e.latlng, radius).addTo(map);
 
-    // Update the routing control with the new user location
-    routingControl.setWaypoints([
-        L.latLng(e.latlng), // User's current location
-        L.latLng(endLatLng) // Destination location
-    ]);
-    
-    var distance = e.latlng.distanceTo(L.latLng(endLatLng));
-    alert("Distance to Savor Saga: " + (distance / 1000).toFixed(2) + " km");
-}
+            // Update the routing control with the new user location
+            routingControl.setWaypoints([
+                L.latLng(e.latlng), // User's current location
+                L.latLng(endLatLng) // Destination location
+            ]);
+            
+            var distance = e.latlng.distanceTo(L.latLng(endLatLng));
+            alert("Distance to Savor Saga: " + (distance / 1000).toFixed(2) + " km");
+        }
 
-function onLocationError(e) {
-    switch(e.code) {
-        case e.PERMISSION_DENIED:
-            alert("Location access denied by the user.");
-            break;
-        case e.POSITION_UNAVAILABLE:
-            alert("Location information is unavailable.");
-            break;
-        case e.TIMEOUT:
-            alert("The request to get user location timed out.");
-            break;
-        default:
-            alert("An unknown error occurred.");
-            break;
-    }
-}
+        function onLocationError(e) {
+            switch(e.code) {
+                case e.PERMISSION_DENIED:
+                    alert("Location access denied by the user.");
+                    break;
+                case e.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case e.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                default:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
 
-map.on('locationfound', onLocationFound);
-map.on('locationerror', onLocationError);
+        map.on('locationfound', onLocationFound);
+        map.on('locationerror', onLocationError);
 
-// Setting the timeout to 10 seconds
-map.locate({setView: true, maxZoom: 15, timeout: 10000});
+        // Setting the timeout to 10 seconds
+        map.locate({setView: true, maxZoom: 15, timeout: 10000});
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "about.xml", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var xmlDoc = xhr.responseXML;
+                    var teamMembers = xmlDoc.getElementsByTagName("member");
+                    var teamContainer = document.createElement('div');
+                    teamContainer.classList.add('team-container'); // Add the container class
+
+                    Array.from(teamMembers).forEach(function (member) {
+                        var name = member.getElementsByTagName("name")[0].textContent;
+                        var role = member.getElementsByTagName("role")[0].textContent;
+                        var image = member.getElementsByTagName("image")[0].textContent;
+                        var description = member.getElementsByTagName("description")[0].textContent;
+
+                        var memberDiv = document.createElement('div');
+                        memberDiv.classList.add('team-member');
+                        memberDiv.innerHTML = `
+                            <img src="${image}" alt="${name}">
+                            <h3>${name}</h3>
+                            <p>${role}</p>
+                            <p>${description}</p>
+                        `;
+                        teamContainer.appendChild(memberDiv);
+                    });
+
+                    document.querySelector('.team').appendChild(teamContainer);
+                } else if (xhr.readyState === 4) {
+                    console.error("Failed to load XML data");
+                }
+            };
+            xhr.send();
+        });
+
 
     </script>
 </body>

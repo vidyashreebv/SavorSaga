@@ -1,0 +1,10 @@
+<!ELEMENT recipes (recipe+)>
+<!ELEMENT recipe (name, description, image, preparationTime, servings, difficulty, calories)>
+<!ATTLIST recipe id ID #REQUIRED>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT image (#PCDATA)>
+<!ELEMENT preparationTime (#PCDATA)>
+<!ELEMENT servings (#PCDATA)>
+<!ELEMENT difficulty (#PCDATA)>
+<!ELEMENT calories (#PCDATA)>

@@ -25,10 +25,10 @@
         <nav>
             <ul>
                 <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="recipes.html">Recipes</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="log.html">Login/Signup</a></li>
+                <li><a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a></li>
+                <li><a href="recipes.html"><i class="fa-solid fa-utensils"></i> Recipes</a></li>
+                <li><a href="blog.html"><i class="fa-brands fa-blogger"></i> Blog</a></li>
+                <li><a href="log.html"><i class="fa-solid fa-right-to-bracket"></i> Login/Signup</a></li>
             </ul>
         </nav>
     </header>
@@ -63,6 +63,26 @@
                 </div>
             </div>
         </section>
+        <br>
+        <section class="recipes-intro">
+            <button id="viewAllBtn" class="btn btn-primary" style="background-color: rgb(255, 255, 255); color: #007bff;">View All</button>
+        </section>
+        <!-- Table initially hidden -->
+        <table id="recipeTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Recipe ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Preparation Time (mins)</th>
+                    <th>Servings</th>
+                    <th>Difficulty</th>
+                    <th>Calories</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </main>
     <footer>
         <div class="footer-icons">
@@ -71,5 +91,53 @@
             <a href="https://www.instagram.com/" class="icon" target="_blank"><img src="/instsvg.svg" alt="Instagram"></a>
         </div>
     </footer>
+
+    <script>
+        document.getElementById('viewAllBtn').addEventListener('click', function() {
+            var table = document.getElementById('recipeTable');
+            if (table.style.display === 'none') {
+                table.style.display = 'table';
+                this.textContent = 'Hide All';
+                loadXML();
+            } else {
+                table.style.display = 'none';
+                this.textContent = 'View All';
+            }
+        });
+
+        function loadXML() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/recipes.xml', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var xmlDoc = xhr.responseXML;
+                    var recipes = xmlDoc.getElementsByTagName('recipe');
+                    var tableBody = document.querySelector('#recipeTable tbody');
+                    tableBody.innerHTML = '';
+
+                    for (var i = 0; i < recipes.length; i++) {
+                        var id = recipes[i].getAttribute('id');
+                        var name = recipes[i].getElementsByTagName('name')[0].textContent;
+                        var description = recipes[i].getElementsByTagName('description')[0].textContent;
+                        var prepTime = recipes[i].getElementsByTagName('preparationTime')[0].textContent;
+                        var servings = recipes[i].getElementsByTagName('servings')[0].textContent;
+                        var difficulty = recipes[i].getElementsByTagName('difficulty')[0].textContent;
+                        var calories = recipes[i].getElementsByTagName('calories')[0].textContent;
+
+                        var row = document.createElement('tr');
+                        row.innerHTML = '<td>' + id + '</td>' +
+                                        '<td><a href="#">' + name + '</a></td>' +
+                                        '<td>' + description + '</td>' +
+                                        '<td>' + prepTime + '</td>' +
+                                        '<td>' + servings + '</td>' +
+                                        '<td>' + difficulty + '</td>' +
+                                        '<td>' + calories + '</td>';
+                        tableBody.appendChild(row);
+                    }
+                }
+            };
+            xhr.send();
+        }
+    </script>
 </body>
 </html>

@@ -4,10 +4,10 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('/bg.jpg'); /* Replace with your background image */
-    background-size: cover; /* Cover the entire viewport */
-    background-position: center; /* Center the background image */
-    background-attachment: fixed; /* Keep the background image fixed during scrolling */
+    background-image: url('/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 header {
@@ -27,7 +27,7 @@ header {
 }
 
 .site-title {
-    margin-left: 20px; /* Space between the logo and the title */
+    margin-left: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -46,29 +46,49 @@ header {
 }
 
 nav {
-    margin-left: auto; /* Push the navigation to the right */
+	margin-left: auto;
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
 }
 
 nav ul {
-    list-style: none;
-    display: flex;
-    gap: 50px;
-    padding: 0;
-    margin: 0;
+	list-style: none;
+	display: flex;
+	gap: 50px;
+	padding: 0;
+	margin: 0;
+}
+
+nav ul li{
+	margin-right: 20px;
+	transition: color 0.3s;
 }
 
 nav a {
-    text-decoration: none;
-    color: #333;
-    font-size: 1.25rem;
+	text-decoration: none;
+	color: #333;
+	font-size: 1.25rem;
 }
 
 nav a:hover {
-    color: #007bff;
-    background: #c5ced8;
-    padding: 10px 20px;
-    border-radius: 10%;
-    transition: all 0.3s ease;
+	color: #007bff;
+	background: #c5ced8;
+	padding: 10px 20px;
+	border-radius: 10%;
+	transition: all 0.3s ease;
+}
+
+.checkbtn {
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    display: none;
+}
+
+#check {
+    display: none;
 }
 
 main {
@@ -121,21 +141,21 @@ main {
 
 .team-container {
     display: flex;
-    justify-content: space-around; /* Spreads the items evenly */
-    flex-wrap: wrap; /* Allows items to wrap to the next line if they don't fit */
-    gap: 20px; /* Adjusts the space between each team member */
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
     margin-top: 20px;
 }
 
 .team-member {
-    flex: 1 1 calc(33.333% - 40px); /* Makes each member take up roughly 1/3 of the row */
-    max-width: calc(33.333% - 40px); /* Same as above, ensuring they fit nicely */
+    flex: 1 1 calc(33.333% - 40px);
+    max-width: calc(33.333% - 40px);
     text-align: center;
     background-color: #f8f9fa;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease; /* Adds a hover effect */
+    transition: transform 0.3s ease;
 }
 
 .team-member img {
@@ -231,8 +251,6 @@ footer {
         border-radius: 4px;
         margin-left: 600px;
         text-decoration: none;
-        
-
 }
 
 .footer-icons {
@@ -242,22 +260,57 @@ footer {
 }
 
 .footer-icons .icon img {
-    width: 40px; /* Adjust as needed */
+    width: 40px;
     height: auto;
 }
 
 main {
     padding: 20px;
-    background: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background for better readability */
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 8px;
 }
 
 .team-member:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
+    transform: translateY(-5px);
 }
 
 /* For smaller screens, stack the items */
 @media (max-width: 768px) {
+	.checkbtn {
+		display: block;
+		color: #333;
+		margin-right: 20px;
+	}
+
+	nav ul {
+		position: fixed;
+		top: 80px;
+		right: -100%;
+		width: 100%;
+		height: 100vh;
+		background-color: #f8f9fa;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		transition: right 0.3s ease-in-out;
+		z-index: 1;
+	}
+
+	nav ul li {
+		margin: 20px 0;
+	}
+
+	nav a {
+		font-size: 1.5rem;
+		color: #333;
+		text-decoration: none;
+	}
+
+	#check:checked ~ nav ul {
+		right: 0;
+	}	
+
     .team-member {
         flex: 1 1 100%;
         max-width: 100%;

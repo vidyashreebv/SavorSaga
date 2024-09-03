@@ -3,8 +3,8 @@
         <html>
         <body>
             <h2>Recipes</h2>
-            <table border="1">
-                <tr bgcolor="#9acd32">
+            <table border="1" bordercolor="white">
+                <tr bgcolor="#007bff">
                     <th>Recipe Name</th>
                     <th>Description</th>
                     <th>Preparation Time</th>

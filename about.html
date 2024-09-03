@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Meta Tags for Character Set and Viewport Configuration -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Savor Saga</title>
+    
+    <!-- External CSS Link -->
     <link rel="stylesheet" href="/about.css">
+    
+    <!-- Google Fonts Integration -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kalnia+Glaze:wght@100..700&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS Integration -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Font Awesome Integration -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css"/>
+    
+    <!-- Leaflet CSS for Map Integration -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+
+    <!-- Inline CSS for Map Styling -->
     <style>
         #map {
             height: 400px;
@@ -19,7 +33,9 @@
         }
     </style>
 </head>
+
 <body>
+    <!-- Header Section -->
     <header>
         <div class="logo">
             <a href="/index.html">
@@ -31,6 +47,10 @@
             <p>Taste the Tale</p>
         </div>
         <nav>
+            <label for="check" class="checkbtn">
+                <i class="fas fa-bars"></i>
+            </label>
+            <input type="checkbox" id="check">
             <ul>
                 <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a></li>
@@ -40,18 +60,26 @@
             </ul>
         </nav>
     </header>
+
+    <!-- Main Content -->
     <main>
+        <!-- About Us Section -->
         <section class="about-intro">
             <h2>About Us</h2>
             <p>Welcome to Savor Saga, your ultimate destination for delicious recipes and culinary inspiration. Our mission is to bring you the finest recipes from around the world, crafted with love and passion.</p>
             <p>We believe that food is not just about sustenance but a journey of flavors, experiences, and memories. Join us as we explore the world of gastronomy, one recipe at a time.</p>
         </section>
+        
         <br>
+        
+        <!-- Meet the Team Section -->
         <section class="team">
             <h2>Meet the Team</h2>
-            <!-- The JavaScript will insert the team-container here -->
-        </section>               
+        </section>
+        
         <br>
+        
+        <!-- Contact Section -->
         <section class="contact">
             <h2>Get in Touch</h2>
             <p>If you have any questions or would like to get in touch with us, please use the contact form below. We’d love to hear from you!</p>
@@ -68,15 +96,14 @@
                     <label for="message">Message</label>
                     <textarea id="message" name="message" rows="4" required></textarea>
                 </div>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Cancel
-                </button>
-                <button type="submit" class="btn btn-primary">
-                    Send Message
-                </button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
         </section>
+        
         <br>
+        
+        <!-- Map Section -->
         <section class="map">
             <h2>Our Location</h2>
             <div id="map"></div>
@@ -84,6 +111,8 @@
             <p class="btnclass"><a href="https://maps.app.goo.gl/UPxynwzz9XQ6iJTF7" target="_blank">View on Google Maps</a></p>
         </section>
     </main>
+
+    <!-- Footer Section -->
     <footer>
         <div class="footer-content">
             <div class="footer-icons">
@@ -93,7 +122,8 @@
             </div>
         </div>
     </footer>
-    <!-- Modal HTML -->
+
+    <!-- Modal for Cancellation -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -105,17 +135,26 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                        Save changes
-                    </button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- JavaScript Integrations -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
     <script>
+        // Toggle Navigation Menu for Smaller Screens
+        document.querySelector('.checkbtn').addEventListener('click', function () {
+            const navUl = document.querySelector('nav ul');
+            navUl.style.right = (navUl.style.right === '0px') ? '-100%' : '0';
+        });
+
+        //Leaflet Map
         var map = L.map('map').setView([12.9494, 77.5847], 15);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -123,8 +162,8 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        var startLatLng = [12.935, 77.610]; // Replace with your starting location
-        var endLatLng = [12.9494, 77.5847]; // Destination location
+        var startLatLng = [12.935, 77.610];
+        var endLatLng = [12.9494, 77.5847];
 
         var routingControl = L.Routing.control({
             waypoints: [
@@ -137,21 +176,18 @@
         function onLocationFound(e) {
             var radius = e.accuracy;
             
-            // Remove the existing user marker if it exists
             if (userMarker) {
                 map.removeLayer(userMarker);
             }
-            
-            // Add a new marker at the user's current location
+
             var userMarker = L.marker(e.latlng).addTo(map)
                 .bindPopup("You are within " + radius + " meters from this point").openPopup();
             
             L.circle(e.latlng, radius).addTo(map);
 
-            // Update the routing control with the new user location
             routingControl.setWaypoints([
-                L.latLng(e.latlng), // User's current location
-                L.latLng(endLatLng) // Destination location
+                L.latLng(e.latlng),
+                L.latLng(endLatLng)
             ]);
             
             var distance = e.latlng.distanceTo(L.latLng(endLatLng));
@@ -159,7 +195,7 @@
         }
 
         function onLocationError(e) {
-            switch(e.code) {
+            switch (e.code) {
                 case e.PERMISSION_DENIED:
                     alert("Location access denied by the user.");
                     break;
@@ -178,10 +214,10 @@
         map.on('locationfound', onLocationFound);
         map.on('locationerror', onLocationError);
 
-        // Setting the timeout to 10 seconds
-        map.locate({setView: true, maxZoom: 15, timeout: 10000});
+        map.locate({ setView: true, maxZoom: 15, timeout: 10000 });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        // Load Team Members from XML File and Insert into the DOM
+        document.addEventListener('DOMContentLoaded', function () {
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "about.xml", true);
             xhr.onreadystatechange = function () {
@@ -189,7 +225,7 @@
                     var xmlDoc = xhr.responseXML;
                     var teamMembers = xmlDoc.getElementsByTagName("member");
                     var teamContainer = document.createElement('div');
-                    teamContainer.classList.add('team-container'); // Add the container class
+                    teamContainer.classList.add('team-container');
 
                     Array.from(teamMembers).forEach(function (member) {
                         var name = member.getElementsByTagName("name")[0].textContent;
@@ -215,8 +251,7 @@
             };
             xhr.send();
         });
-
-
     </script>
 </body>
+
 </html>
